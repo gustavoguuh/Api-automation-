@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.0 on win32)" generated="20240525 16:05:08.395" rpa="false" schemaversion="4">
+<suite id="s1" name="Post Fakerestapi Authors Test" source="C:\Users\guaug\robotapi\tests\post_fakerestapi_authors_test.robot">
+<test id="s1-t1" name="TC01 - Realizar Adição de um novo autor" line="11">
+<kw name="Adicionar um novo Autor" library="post_fakerestapi_authors_resource">
+<var>${response_keyword}</var>
+<arg>id=1</arg>
+<arg>firstName=zeca</arg>
+<arg>lastName=pimenteira</arg>
+<msg timestamp="20240525 16:05:09.225" level="TRACE">Arguments: [ ${id}='1' | ${firstName}='zeca' | ${lastName}='pimenteira' ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>id=${id}</arg>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240525 16:05:09.225" level="TRACE">Arguments: [ 'id=${id}' | 'firstName=${firstName}' | 'lastName=${lastName}' ]</msg>
+<msg timestamp="20240525 16:05:09.226" level="TRACE">Return: {'firstName': 'zeca', 'id': '1', 'lastName': 'pimenteira'}</msg>
+<msg timestamp="20240525 16:05:09.226" level="INFO">&amp;{body} = { id=1 | firstName=zeca | lastName=pimenteira }</msg>
+<status status="PASS" starttime="20240525 16:05:09.225" endtime="20240525 16:05:09.226"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>url=${HOST}/${ADD_NEW_AUTHOR}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20240525 16:05:09.226" level="TRACE">Arguments: [ url='https://fakerestapi.azurewebsites.net/api/v1/Authors' | json={'firstName': 'zeca', 'id': '1', 'lastName': 'pimenteira'} ]</msg>
+<msg timestamp="20240525 16:05:09.242" level="DEBUG">Starting new HTTPS connection (1): fakerestapi.azurewebsites.net:443</msg>
+<msg timestamp="20240525 16:05:10.968" level="DEBUG">https://fakerestapi.azurewebsites.net:443 "POST /api/v1/Authors HTTP/1.1" 200 None</msg>
+<msg timestamp="20240525 16:05:10.968" level="INFO">POST Request : url=https://fakerestapi.azurewebsites.net/api/v1/Authors 
+ path_url=/api/v1/Authors 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '58', 'Content-Type': 'application/json'} 
+ body=b'{"id": "1", "firstName": "zeca", "lastName": "pimenteira"}' 
+ </msg>
+<msg timestamp="20240525 16:05:10.968" level="INFO">POST Response : url=https://fakerestapi.azurewebsites.net/api/v1/Authors 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Date': 'Sat, 25 May 2024 19:09:54 GMT', 'Server': 'Kestrel', 'Transfer-Encoding': 'chunked', 'api-supported-versions': '1.0'} 
+ body={"id":1,"idBook":0,"firstName":"zeca","lastName":"pimenteira"} 
+ </msg>
+<msg timestamp="20240525 16:05:10.968" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20240525 16:05:10.968" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240525 16:05:09.226" endtime="20240525 16:05:10.968"/>
+</kw>
+<msg timestamp="20240525 16:05:10.968" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20240525 16:05:10.968" level="INFO">${response_keyword} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240525 16:05:09.225" endtime="20240525 16:05:10.968"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response_keyword.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240525 16:05:10.968" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20240525 16:05:10.984" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240525 16:05:10.984" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20240525 16:05:10.968" endtime="20240525 16:05:10.984"/>
+</kw>
+<status status="PASS" starttime="20240525 16:05:09.224" endtime="20240525 16:05:10.984"/>
+</test>
+<status status="PASS" starttime="20240525 16:05:08.395" endtime="20240525 16:05:10.984"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Post Fakerestapi Authors Test">Post Fakerestapi Authors Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
